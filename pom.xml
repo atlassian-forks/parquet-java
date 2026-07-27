@@ -27,7 +27,7 @@
 
   <groupId>org.apache.parquet</groupId>
   <artifactId>parquet</artifactId>
-  <version>1.17.1</version>
+  <version>1.17.1-atlassian-1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Parquet Java</name>
@@ -35,9 +35,9 @@
   <description>Parquet is a columnar storage format that supports nested data. This provides the java implementation.</description>
 
   <scm>
-    <connection>scm:git:git@github.com:apache/parquet-mr.git</connection>
-    <url>scm:git:git@github.com:apache/parquet-mr.git</url>
-    <developerConnection>scm:git:git@github.com:apache/parquet-mr.git</developerConnection>
+    <connection>scm:git:git@github.com:atlassian-forks/parquet-java.git</connection>
+    <url>scm:git:git@github.com:atlassian-forks/parquet-java.git</url>
+    <developerConnection>scm:git:git@github.com:atlassian-forks/parquet-java.git</developerConnection>
     <tag>apache-parquet-1.17.1-rc0</tag>
   </scm>
 
@@ -67,6 +67,17 @@
       <unsubscribe>commits-unsubscribe@parquet.apache.org</unsubscribe>
     </mailingList>
   </mailingLists>
+
+  <distributionManagement>
+    <repository>
+      <id>atlassian-3rdparty</id>
+      <url>https://packages.atlassian.com/maven/3rdparty</url>
+    </repository>
+    <snapshotRepository>
+      <id>atlassian-3rdparty-snapshots</id>
+      <url>https://packages.atlassian.com/maven/3rdparty-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <properties>
     <maven.compiler.release>11</maven.compiler.release>
@@ -417,6 +428,35 @@
         <configuration>
           <skip>true</skip>
         </configuration>
+      </plugin>
+
+      <!-- Bundle the LICENSE and NOTICE files into each jar's META-INF (Atlassian fork requirement) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-license</id>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}/META-INF</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${maven.multiModuleProjectDirectory}</directory>
+                  <includes>
+                    <include>LICENSE</include>
+                    <include>NOTICE</include>
+                  </includes>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
