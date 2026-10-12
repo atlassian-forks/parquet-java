@@ -27,7 +27,7 @@
 
   <groupId>org.apache.parquet</groupId>
   <artifactId>parquet</artifactId>
-  <version>1.17.1-atlassian-2-SNAPSHOT</version>
+  <version>1.17.1-atlassian-2</version>
   <packaging>pom</packaging>
 
   <name>Apache Parquet Java</name>
@@ -38,7 +38,7 @@
     <connection>scm:git:git@github.com:atlassian-forks/parquet-java.git</connection>
     <url>scm:git:git@github.com:atlassian-forks/parquet-java.git</url>
     <developerConnection>scm:git:git@github.com:atlassian-forks/parquet-java.git</developerConnection>
-    <tag>parquet-1.17.1-atlassian-1</tag>
+    <tag>parquet-1.17.1-atlassian-2</tag>
   </scm>
 
   <licenses>
